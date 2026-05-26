@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정진영 | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- DESIGN IDENTITY SYSTEM (3-COLOR PALETTE) --- */
+        :root {
+            --bg-color: #0d0d0d;       /* 1. 메인: 매트한 딥 블랙 */
+            --text-color: #ffffff;     /* 2. 서브: 클린 화이트 */
+            --accent-color: #00ff66;   /* 3. 포인트: 네온 일렉트릭 그린 */
+            --muted-color: #888888;    /* 보조: 쿨 슬레이트 그레이 */
+            --card-bg: #1a1a1a;         /* 카드 컴포넌트용 다크 그레이 */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans KR', 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* 텍스트 드래그 시 힙한 네온 반전 효과 */
+        ::selection {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* 상단 네비게이션 바 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 메인 컨테이너 */
+        main {
+            padding: 0 5%;
+        }
+
+        .section {
+            padding: 140px 0 80px 0;
+            min-height: 100vh;
+        }
+
+        /* --- SECTION 1: HERO (상단 메인 영역) --- */
+        #hero {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 5%;
+        }
+
+        .hero-text {
+            flex: 1.2;
+        }
+
+        .hero-text .tag {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 14px;
+            color: var(--accent-color);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+            margin-bottom: 25px;
+            word-break: keep-all;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-color);
+            display: block;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--muted-color);
+            max-width: 540px;
+            margin-bottom: 40px;
+            word-break: keep-all;
+        }
+
+        /* 내 사진 프레임 및 힙한 오프셋 박스 이펙트 */
+        .hero-image-container {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-wrapper {
+            position: relative;
+            width: 340px;
+            height: 440px;
+            background-color: var(--card-bg);
+            border: 2px solid var(--text-color);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+
+        /* 뒷배경에 엇갈려 배치된 네온 라운드 프레임 */
+        .profile-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent-color);
+            z-index: -1;
+            transition: transform 0.4s ease;
+        }
+
+        .profile-wrapper:hover {
+            transform: translate(-5px, -5px);
+            border-color: var(--accent-color);
+        }
+
+        .profile-wrapper:hover::before {
+            transform: translate(8px, 8px);
+        }
+
+        /* 프로필 이미지 흑백->컬러 반전 효과 */
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(110%);
+            transition: filter 0.4s ease;
+            display: block;
+        }
+
+        .profile-wrapper:hover .profile-img {
+            filter: grayscale(0%) contrast(100%);
+        }
+
+        /* --- 공통 섹션 타이틀 정의 --- */
+        #about h2, #skills h2, #projects h2, #contact h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            letter-spacing: -1px;
+        }
+
+        #about h2::after, #skills h2::after, #projects h2::after, #contact h2::after {
+            content: '.';
+            color: var(--accent-color);
+        }
+
+        /* --- SECTION 2: ABOUT --- */
+        .about-content {
+            display: flex;
+            gap: 10%;
+        }
+
+        .about-intro {
+            flex: 1;
+            font-size: 20px;
+            font-weight: 700;
+            word-break: keep-all;
+        }
+
+        .about-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .detail-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .detail-item .label {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .detail-item .value {
+            font-size: 16px;
+        }
+
+        /* --- SECTION 3: SKILLS --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .skill-category h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .skill-tag {
+            font-weight: 500;
+            font-size: 15px;
+            color: #dddddd;
+        }
+
+        .skill-tag span {
+            display: block;
+            font-size: 13px;
+            color: var(--muted-color);
+            margin-top: 2px;
+        }
+
+        /* --- SECTION 4: PROJECTS (3x3 Grid 설계) --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+        }
+
+        .project-thumb-box {
+            width: 100%;
+            height: 240px;
+            background-color: #252525;
+            overflow: hidden;
+        }
+
+        .project-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-thumb {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .project-info p {
+            color: var(--muted-color);
+            font-size: 14px;
+            margin-bottom: 20px;
+            height: 44px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .project-tools {
+            color: var(--accent-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- SECTION 5: CONTACT (DB 입출력 레이어) --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+        }
+
+        .contact-info-side p {
+            font-size: 16px;
+            color: var(--muted-color);
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 16px;
+            font-weight: 900;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #00e65c;
+            transform: translateY(-2px);
+        }
+
+        /* 하단 푸터 */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 13px;
+            color: var(--muted-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- 모바일/태블릿 반응형 미디어 쿼리 --- */
+        @media (max-width: 1024px) {
+            #hero {
+                flex-direction: column-reverse;
+                justify-content: center;
+                gap: 50px;
+                text-align: center;
+                padding-top: 160px;
+            }
+            .hero-text p {
+                margin: 0 auto 40px auto;
+            }
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 20px 5%; }
+            nav ul { gap: 20px; }
+            .hero-text h1 { font-size: 38px; }
+            .about-content { flex-direction: column; gap: 40px; }
+            .skills-grid, .project-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">JINYOUNG<span>.</span></div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="section">
+            <div class="hero-text">
+                <span class="tag">Digital Marketer & Visual Creator</span>
+                <h1>
+                    감각적인 비주얼로<br>
+                    정체성을 증명하는<br>
+                    <span>마케터 정진영입니다.</span>
+                </h1>
+                <p>소비자의 시선이 머무는 컨텐츠를 기획하고, 세련된 비주얼 에셋을 활용해 브랜드의 핵심 가치를 명확하게 각인시킵니다.</p>
+            </div>
+            <div class="hero-image-container">
+                <div class="profile-wrapper">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" alt="정진영 프로필 사진" class="profile-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-intro">
+                    <p>뻔하고 지루한 커머셜 문구를 거부합니다. 트렌디한 감각과 데이터를 기반으로, 타겟의 마음을 움직이는 독창적인 크리에이티브를 지향합니다.</p>
+                </div>
+                <div class="about-details">
+                    <div class="detail-item">
+                        <div class="label">Name</div>
+                        <div class="value">정진영 (Jeong Jin Young)</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Education</div>
+                        <div class="value">인하공업전문대학교</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Contact</div>
+                        <div class="value">your-email@example.com</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Visual & Design</h3>
+                    <div class="skill-list">
+                        <div class="skill-tag">Adobe Illustrator<span>브랜드 그래픽 에셋 및 키비주얼, 타이포그래피 설계 가능</span></div>
+                        <div class="skill-tag">Canva<span>SNS 광고 템플릿 및 고효율 마케팅 배너 신속 제작</span></div>
+                        <div class="skill-tag">CapCut (Mobile/PC)<span>트렌디한 숏폼 영상 오버레이 및 컷편집 최적화</span></div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Marketing & Tech</h3>
+                    <div class="skill-list">
+                        <div class="skill-tag">SEO & Content Optimization<span>검색 최적화 키워드 추출 및 상위 노출 콘텐츠 마케팅 기획</span></div>
+                        <div class="skill-tag">HTML5 / CSS3<span>의도한 디자인 레이아웃을 웹 표준 코드로 완벽하게 하드코딩 구현</span></div>
+                        <div class="skill-tag">Google Apps Script / Tech<span>자동화 업무 스크립트 활용 및 제어</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-thumb-box">
+                        <img src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=600" alt="Zenbody 캠페인" class="project-thumb">
+                    </div>
+                    <div class="project-info">
+                        <h3>Zenbody Blood Sugar Health Plus</h3>
+                        <p>혈당 건강 기능식품 랜딩페이지 및 3대 셀링포인트 중심의 마케팅 크리에이티브 기획.</p>
+                        <div class="project-meta">
+                            <span class="project-tools">AI Graphic, Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-thumb-box">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=600" alt="1인 가구 인테리어 앱 기획" class="project-thumb">
+                    </div>
+                    <div class="project-info">
+                        <h3>1인 가구 인테리어 플랫폼 앱 기획</h3>
+                        <p>MZ 세대 주거 트렌드를 분석하여 유저 시나리오 기반의 UI/UX 네비게이션 구조 설계.</p>
+                        <div class="project-meta">
+                            <span class="project-tools">UI/UX, Wireframe</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-thumb-box">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="정보성 콘텐츠 마케팅" class="project-thumb">
+                    </div>
+                    <div class="project-info">
+                        <h3>대학생 생활 금융 피해 예방 콘텐츠</h3>
+                        <p>보이스피싱 및 전세사기 피해 방지를 위해 흐름과 타겟 분석 기반의 정보성 SNS 블로그 기획.</p>
+                        <div class="project-meta">
+                            <span class="project-tools">SEO Content, Copywriting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <div class="contact-container">
+                <div class="contact-info-side">
+                    <p>새로운 아이디어, 협업 제안, 혹은 채용에 관한 문의가 있다면 언제든 자유롭게 메시지를 보내주세요. 확인 후 신속하게 연락드리겠습니다.</p>
+                </div>
+                <form class="contact-form" action="#" method="POST">
+                    <input type="text" name="caller_name" placeholder="성함 / 기업명" required>
+                    <input type="email" name="caller_email" placeholder="회신받을 이메일 주소" required>
+                    <textarea name="caller_message" placeholder="프로젝트 제안 또는 문의 내용을 입력해주세요" required></textarea>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Jeong Jin Young. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
