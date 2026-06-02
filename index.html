@@ -1,72 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- Google Tag Manager (분석 및 추적 코드 최상단 배치) -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KGNQJP7T');</script>
-    <!-- End Google Tag Manager -->
-
-    <meta charset="UTF-8">
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KGNQJP7T');</script>
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- 🎯 1. 검색 엔진(SEO) 최적화 타이틀 및 메타 디스크립션 설정 -->
-    <title>올라운드 마케터 정진영 | 자동화와 크리에이티브를 더한 마케팅 기획</title>
-    <meta name="description" content="포트폴리오입니다.">
-
-    <!-- 🎯 2. 구글 검색 엔진 노출을 위한 인물(Person) 구조화 데이터 스키마 마크업 -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "정진영",
-      "alternateName": "Jeong Jin Young",
-      "url": "https://your-portfolio-domain.com", 
-      "image": "https://your-portfolio-domain.com/Gemini_Generated_Image_y9r4tdy9r4tdy9r4.png",
-      "jobTitle": "All-Round Marketer & Content Planner",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Freelancer"
-      },
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "인하공업전문대학교",
-        "sameAs": "https://www.inha.ac.kr"
-      },
-      "description": "구글 앱스 스크립트 기반의 마케팅·문서 자동화 시스템과 어도비 영상 편집 역량을 결합하여 고효율 성과를 도출하는 마케팅 기획자 정진영입니다.",
-      "knowsAbout": [
-        "Digital Marketing",
-        "Marketing Automation",
-        "Document Automation",
-        "Content Marketing",
-        "Video Editing",
-        "Adobe Premiere Pro",
-        "Adobe Illustrator",
-        "Search Engine Optimization (SEO)",
-        "Google Apps Script"
-      ],
-      "sameAs": [
-        "https://blog.naver.com/jinyeong5384",
-        "https://www.instagram.com/wldlsdud/"
-      ]
-    }
-    </script>
-    <!-- Open Graph 태그 설정 -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="올라운드 마케터 정진영 | 자동화와 크리에이티브를 더한 마케팅 기획" />
-<meta property="og:description" content="어도비 영상 편집 역량부터 구글 앱스 스크립트 기반의 문서·마케팅 자동화 시스템 구축까지. 크리에이티브와 효율성을 결합해 성과를 이끄는 마케팅 기획자 정진영의 포트폴리오입니다." />
-<meta property="og:url" content="https://jinyeong3053-sketch.github.io/fefe/" />
-<meta property="og:image" content="https://yourwebsite.com/images/og-image.jpg" />
-
-<!-- 트위터(X) 카드 태그 (선택 사항이지만 권장) -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="올라운드 마케터 정진영 | 자동화와 크리에이티브를 더한 마케팅 기획" />
-<meta name="twitter:description" content="어도비 영상 편집 역량부터 구글 앱스 스크립트 기반의 문서·마케팅 자동화 시스템 구축까지. 크리에이티브와 효율성을 결합해 성과를 이끄는 마케팅 기획자 정진영의 포트폴리오입니다." />
-<meta name="twitter:image" content="https://yourwebsite.com/images/og-image.jpg" />
-
-    <!-- 웹폰트 연동 -->
+    <title>정진영 | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
@@ -90,7 +32,8 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'Noto Sans KR', 'Montserrat', sans-serif;
+            /* 영문 서체인 Montserrat를 앞에 배치하여 한/영 폰트 렌더링 오류 수정 */
+            font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -513,21 +456,19 @@
         }
 
         @media (max-width: 768px) {
-            header { padding: 20px 5%; }
-            nav ul { gap: 20px; }
-            .hero-text h1 { font-size: 38px; }
+            header { padding: 15px 5%; }
+            nav ul { gap: 15px; }
+            nav ul li a { font-size: 12px; } /* 모바일 내비게이션 요소 크기 최적화 */
+            .hero-text h1 { font-size: 34px; }
             .about-content { flex-direction: column; gap: 40px; }
             .skills-grid, .project-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGNQJP7T"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <header>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGNQJP7T"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header>
         <div class="logo">JINYOUNG<span>.</span></div>
         <nav>
             <ul>
@@ -540,21 +481,19 @@
     </header>
 
     <main>
-        <!-- 히어로 영역: 타이틀 변경 및 정진영 님의 실제 프로필 이미지 파일명 매핑 -->
         <section id="hero" class="section">
             <div class="hero-text">
-                <span class="tag">Marketing Planner & Automation Expert</span>
+                <span class="tag">Digital Marketer & Visual Creator</span>
                 <h1>
-                    자동화로 효율을,<br>
-                    영상으로 반응을 만드는<br>
-                    <span>마케팅 기획자 정진영입니다.</span>
+                    감각적인 비주얼로<br>
+                    정체성을 증명하는<br>
+                    <span>마케터 정진영입니다.</span>
                 </h1>
-                <p>구글 앱스 스크립트 기반의 마케팅·문서 자동화 시스템과 어도비 툴을 활용한 트렌디한 영상 크리에이티브를 결합하여 성과를 극대화하는 기획을 지향합니다.</p>
+                <p>소비자의 시선이 머무는 컨텐츠를 기획하고, 세련된 비주얼 에셋을 활용해 브랜드의 핵심 가치를 명확하게 각인시킵니다.</p>
             </div>
             <div class="hero-image-container">
                 <div class="profile-wrapper">
-                    <!-- 💡 연동 요청하신 프로필 이미지 파일명으로 완벽하게 교체되었습니다. -->
-                    <img src="Gemini_Generated_Image_y9r4tdy9r4tdy9r4.png" alt="정진영 프로필 사진" class="profile-img">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" alt="정진영 프로필 사진" class="profile-img">
                 </div>
             </div>
         </section>
@@ -563,7 +502,7 @@
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-intro">
-                    <p>뻔하고 지루한 커머셜 문구를 거부합니다. 트렌디한 감각과 테크 인프라를 기반으로, 데이터 흐름과 프로세스를 자동화하여 타겟의 마음을 효율적으로 움직이는 독창적인 마케팅 기획을 설계합니다.</p>
+                    <p>뻔하고 지루한 커머셜 문구를 거부합니다. 트렌디한 감각과 데이터를 기반으로, 타겟의 마음을 움직이는 독창적인 크리에이티브를 지향합니다.</p>
                 </div>
                 <div class="about-details">
                     <div class="detail-item">
@@ -586,19 +525,19 @@
             <h2>Skills</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Visual & Video Production</h3>
+                    <h3>Visual & Design</h3>
                     <div class="skill-list">
-                        <div class="skill-tag">Adobe Video Premiere / CapCut<span>트렌디한 숏폼 콘텐츠, 광고 영상 오버레이 및 마케팅 영상 직접 기획 및 편집 가능</span></div>
-                        <div class="skill-tag">Adobe Illustrator<span>브랜드 그래픽 에셋 및 상세페이지, 키비주얼 레이아웃 설계</span></div>
-                        <div class="skill-tag">Canva<span>SNS 광고 템플릿 런칭 및 고효율 마케팅 배너 신속 제작</span></div>
+                        <div class="skill-tag">Adobe Illustrator<span>브랜드 그래픽 에셋 및 키비주얼, 타이포그래피 설계 가능</span></div>
+                        <div class="skill-tag">Canva<span>SNS 광고 템플릿 및 고효율 마케팅 배너 신속 제작</span></div>
+                        <div class="skill-tag">CapCut (Mobile/PC)<span>트렌디한 숏폼 영상 오버레이 및 컷편집 최적화</span></div>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Marketing Strategy & Tech</h3>
+                    <h3>Marketing & Tech</h3>
                     <div class="skill-list">
-                        <div class="skill-tag">Google Apps Script & Tech Automation<span>비즈니스 기획 문서 자동화 인프라 및 마케팅 퍼널 제어 스크립트 구축 역량</span></div>
-                        <div class="skill-tag">SEO & Content Optimization<span>검색 엔진 최적화 키워드 분석 및 정교한 타겟 중심의 상위 노출 콘텐츠 기획</span></div>
-                        <div class="skill-tag">HTML5 / CSS3<span>의도한 UI/UX 구조를 웹 표준 인터페이스 코드로 하드코딩 구현</span></div>
+                        <div class="skill-tag">SEO & Content Optimization<span>검색 최적화 키워드 추출 및 상위 노출 콘텐츠 마케팅 기획</span></div>
+                        <div class="skill-tag">HTML5 / CSS3<span>의도한 디자인 레이아웃을 웹 표준 코드로 완벽하게 하드코딩 구현</span></div>
+                        <div class="skill-tag">Google Apps Script / Tech<span>자동화 업무 스크립트 활용 및 제어</span></div>
                     </div>
                 </div>
             </div>
@@ -650,9 +589,9 @@
             <h2>Contact</h2>
             <div class="contact-container">
                 <div class="contact-info-side">
-                    <p>자동화 시스템과 크리에이티브 비주얼을 겸비한 마케팅 기획 협업, 제안 혹은 채용 문의가 있다면 언제든 메시지를 보내주세요.</p>
+                    <p>새로운 아이디어, 협업 제안, 혹은 채용에 관한 문의가 있다면 언제든 자유롭게 메시지를 보내주세요. 확인 후 신속하게 연락드리겠습니다.</p>
                 </div>
-                <form class="contact-form" action="#" method="POST">
+                <form class="contact-form" action="" method="POST">
                     <input type="text" name="caller_name" placeholder="성함 / 기업명" required>
                     <input type="email" name="caller_email" placeholder="회신받을 이메일 주소" required>
                     <textarea name="caller_message" placeholder="프로젝트 제안 또는 문의 내용을 입력해주세요" required></textarea>
